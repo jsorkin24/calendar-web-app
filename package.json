@@ -23,6 +23,7 @@
     "express-session": "^1.15.6",
     "express-validator": "^4.2.1",
     "method-override": "~2.0.2",
+    "moment": "^2.19.1",
     "mongoose": "^4.12.1",
     "node-uuid": "^1.4.7"
   },

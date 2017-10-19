@@ -3,19 +3,23 @@
         "vendor": [
             "jquery",
             "angular",
-            "ngAnimate",
             "angular-bootstrap",
+            "ngAnimate",
             "angular-ui-router",
-            "bootstrap"
+            "moment",
+            "bootstrap",
+            "angular-bootstrap-calendar"
         ],
         "vendor.ui": []
     },
     "paths": {
         "jquery": "bower_components/jquery/dist/jquery.min.js",
         "angular": "bower_components/angular/angular.min.js",
-        "ngAnimate": "bower_components/angular-animate/angular-animate.min.js",
         "angular-bootstrap": "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js",
+        "ngAnimate": "bower_components/angular-animate/angular-animate.min.js",
         "angular-ui-router": "bower_components/angular-ui-router/release/angular-ui-router.min.js",
-        "bootstrap": "bower_components/bootstrap/dist/js/bootstrap.min.js"
+        "moment": "bower_components/moment/min/moment-with-locales.min.js",
+        "bootstrap": "bower_components/bootstrap/dist/js/bootstrap.min.js",
+        "angular-bootstrap-calendar": "bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"
     }
 }

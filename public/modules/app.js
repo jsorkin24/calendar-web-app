@@ -1,7 +1,15 @@
 (function () {
     'use strict';
     angular
-        .module('app', ['ui.router', 'ui.bootstrap', 'app.cal', 'app.services'])
+        .module('app', [
+            //3rd party
+            'ui.router',
+            'ui.bootstrap',
+            'mwl.calendar',
+            //layout
+            'app.cal',
+            'app.services',
+        ]) //modules for app
         .config(RouteConfig)
         .run()
 
