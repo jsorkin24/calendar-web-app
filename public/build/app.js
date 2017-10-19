@@ -61,60 +61,58 @@ $(function () {
 (function () {
     'use strict';
 
+    angular.module('app.services').factory('calService', CalServiceFactory);
+
+    CalServiceFactory.$inject = ['$http', '$q'];
+
+    function CalServiceFactory($http, $q) {
+        return {
+            insert: insert
+        };
+
+        function insert(itemData, onSuccess, onError) {
+            return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);
+        }
+    }
+})();
+'use strict';
+
+(function () {
+    'use strict';
+
     angular.module('app.cal').controller('calController', CalController);
 
-    CalController.$inject = ['calService', "moment", "alert", "calendarConfig"]; //injecting to avoid minification
+    CalController.$inject = ['calService', "moment", "calendarConfig"]; //injecting to avoid minification
 
-    function CalController(calService, moment, alert, calendarConfig) {
+    function CalController(calService, moment, calendarConfig) {
         'use strict';
 
         var vm = this;
 
         vm.calendarView = 'month';
         vm.viewDate = new Date();
+        console.log(vm.events);
         var actions = [{
             label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
             onClick: function onClick(args) {
-                alert.show('Edited', args.calendarEvent);
+                // alert.show('Edited', args.calendarEvent);
+                alert('Edited', args.calendarEvent);
             }
         }, {
             label: '<i class=\'glyphicon glyphicon-remove\'></i>',
             onClick: function onClick(args) {
-                alert.show('Deleted', args.calendarEvent);
+                // alert.show('Deleted', args.calendarEvent);
+                alert('Deleted', args.calendarEvent);
             }
         }];
-        vm.events = [{
-            title: 'An event',
-            color: calendarConfig.colorTypes.warning,
-            startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-            endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-            draggable: true,
-            resizable: true,
-            actions: actions
-        }, {
-            title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-            color: calendarConfig.colorTypes.info,
-            startsAt: moment().subtract(1, 'day').toDate(),
-            endsAt: moment().add(5, 'days').toDate(),
-            draggable: true,
-            resizable: true,
-            actions: actions
-        }, {
-            title: 'This is a really long event title that occurs on every year',
-            color: calendarConfig.colorTypes.important,
-            startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-            endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-            recursOn: 'year',
-            draggable: true,
-            resizable: true,
-            actions: actions
-        }];
+        vm.events = [];
 
         vm.cellIsOpen = true;
 
         vm.addEvent = function () {
             vm.events.push({
                 title: 'New event',
+                description: 'Description',
                 startsAt: moment().startOf('day').toDate(),
                 endsAt: moment().endOf('day').toDate(),
                 color: calendarConfig.colorTypes.important,
@@ -124,19 +122,19 @@ $(function () {
         };
 
         vm.eventClicked = function (event) {
-            alert.show('Clicked', event);
+            alert('Clicked', event);
         };
 
         vm.eventEdited = function (event) {
-            alert.show('Edited', event);
+            alert('Edited', event);
         };
 
         vm.eventDeleted = function (event) {
-            alert.show('Deleted', event);
+            alert('Deleted', event);
         };
 
         vm.eventTimesChanged = function (event) {
-            alert.show('Dropped or resized', event);
+            alert('Dropped or resized', event);
         };
 
         vm.toggle = function ($event, field, event) {
@@ -185,22 +183,3 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
         show: show
     };
 });
-'use strict';
-
-(function () {
-    'use strict';
-
-    angular.module('app.services').factory('calService', CalServiceFactory);
-
-    CalServiceFactory.$inject = ['$http', '$q'];
-
-    function CalServiceFactory($http, $q) {
-        return {
-            insert: insert
-        };
-
-        function insert(itemData, onSuccess, onError) {
-            return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);
-        }
-    }
-})();
