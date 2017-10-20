@@ -113,6 +113,7 @@ $(function () {
                 return element._id === vm.items._id;
             });
             eventList.splice(removeIndex, 1);
+            // vm.items = null;
         }
 
         //Calendar Code

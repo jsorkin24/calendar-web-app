@@ -53,6 +53,7 @@
                 }
             );
             eventList.splice(removeIndex, 1);
+            // vm.items = null;
         }
 
 
