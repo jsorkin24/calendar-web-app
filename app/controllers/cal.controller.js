@@ -31,6 +31,23 @@ function calController() {
             });
     }
 
+    function getOneById(req, res) {
+        let queryCondition = {
+            _id: req.params.id
+        };
+
+        calService
+            .getOne(queryCondition)
+            .then(events => {
+                const responseModel = new responses.ItemResponse();
+                responseModel.item = events;
+                res.json(responseModel);
+            })
+            .catch(err => {
+                return res.status(500).send(new responses.ErrorResponse(err));
+            });
+    }
+
     function insert(req, res) {
         calService
             .insert(req.body)
@@ -79,20 +96,4 @@ function calController() {
     }
 
 
-    function getOneById(req, res) {
-        let queryCondition = {
-            _id: req.params.id
-        };
-
-        calService
-            .getOne(queryCondition)
-            .then(events => {
-                const responseModel = new responses.ItemResponse();
-                responseModel.item = events;
-                res.json(responseModel);
-            })
-            .catch(err => {
-                return res.status(500).send(new responses.ErrorResponse(err));
-            });
-    }
 }

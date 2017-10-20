@@ -11,7 +11,9 @@
             getAll: getAll,
             getById: getById,
             insert: insert,
-            update: update
+            update: update,
+            remove: remove
+
 
         }
 
@@ -37,6 +39,12 @@
             return $http.put(`/api/calendar/${itemData._id}`, itemData)
                 .then(xhrSuccess)
                 .catch(onError)
+        }
+
+        function remove(id, onSuccess, onError) {
+            return $http.delete('/api/calendar/' + id)
+                .then(xhrSuccess)
+                .catch(onError);
         }
 
         function xhrSuccess(response) {

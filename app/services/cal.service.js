@@ -12,8 +12,8 @@ function calService(options) {
         getAll: getAll,
         getOne: getOne,
         insert: insert,
-        updateOne: updateOne
-        // removeOne: removeOne
+        updateOne: updateOne,
+        removeOne: removeOne
     }
 
     function getAll(req, res) {
@@ -37,6 +37,10 @@ function calService(options) {
         return Event.findOneAndUpdate(queryCondition, event, {
             new: true
         })
+    }
+
+    function removeOne(queryCondition) {
+        return Event.findOneAndRemove(queryCondition)
     }
 
 }

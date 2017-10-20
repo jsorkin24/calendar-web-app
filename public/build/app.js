@@ -86,6 +86,22 @@ $(function () {
             calService.insert(vm.item).then(_onSuccess).catch(_onError);
         };
 
+        vm.delete = function (id) {
+            debugger;
+            calService.remove(id).then(_onDeleteSuccess).catch(_onError);
+        };
+
+        function _onDeleteSuccess() {}
+        //will splice out object from array of events
+        // debugger;
+        // let eventList = vm.items;
+        // let removeIndex = eventList.findIndex(
+        //     (element, index, eventList) => {
+        //         return element._id === data.item._id;
+        //     }
+        // );
+        // eventList.splice(removeIndex, 1);
+
         //Calendar Code
         vm.calendarView = 'month';
         vm.viewDate = new Date();
@@ -108,7 +124,6 @@ $(function () {
         vm.addEvent = function () {};
 
         vm.eventClicked = function (event) {
-            debugger;
             vm.item = event;
             vm.item.startsAt = new Date(event.startsAt);
             vm.item.endsAt = new Date(event.endsAt);
@@ -154,7 +169,6 @@ $(function () {
         };
 
         function _onSuccess(res) {
-            debugger;
             vm.items.push(res.item);
         }
 
@@ -197,7 +211,8 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
             getAll: getAll,
             getById: getById,
             insert: insert,
-            update: update
+            update: update,
+            remove: remove
 
         };
 
@@ -215,6 +230,10 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
 
         function update(itemData, onSuccess, onError) {
             return $http.put('/api/calendar/' + itemData._id, itemData).then(xhrSuccess).catch(onError);
+        }
+
+        function remove(id, onSuccess, onError) {
+            return $http.delete('/api/calendar/' + id).then(xhrSuccess).catch(onError);
         }
 
         function xhrSuccess(response) {

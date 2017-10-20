@@ -103,7 +103,7 @@
                     </div>
                 </td>
                 <td>
-                    <button class="btn btn-danger" ng-click="calCtrl.items.splice($index, 1)">
+                    <button class="btn btn-danger" ng-click="calCtrl.delete(calCtrl.item._id)()">
             Delete
           </button>
                     <button class="btn btn-primary" ng-click="calCtrl.add()">
