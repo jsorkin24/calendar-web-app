@@ -169,7 +169,7 @@ $(function () {
 
         function _onEditSuccess(res) {
             vm.item = null;
-            vm.submitButton = 'Add';
+            vm.toggleAdd = !vm.toggleAdd;
         }
 
         function _onError(err) {
