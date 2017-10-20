@@ -9,7 +9,10 @@
     function CalServiceFactory($http, $q) {
         return {
             getAll: getAll,
-            insert: insert
+            getById: getById,
+            insert: insert,
+            update: update
+
         }
 
         function getAll() {
@@ -18,8 +21,20 @@
                 .catch(onError)
         }
 
+        function getById(id, onSuccess, onError) {
+            return $http.get(`/api/calendar/${id}`)
+                .then(xhrSuccess)
+                .catch(onError)
+        }
+
         function insert(itemData, onSuccess, onError) {
             return $http.post('/api/calendar', itemData)
+                .then(xhrSuccess)
+                .catch(onError)
+        }
+
+        function update(itemData, onSuccess, onError) {
+            return $http.put(`/api/calendar/${itemData._id}`, itemData)
                 .then(xhrSuccess)
                 .catch(onError)
         }

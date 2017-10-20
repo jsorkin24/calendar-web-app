@@ -6,5 +6,8 @@ module.exports = router;
 
 // api routes ===========================================================
 router.get('/', calController.getAll)
+router.get('/:id', calController.getOneById)
 router.post('/', calController.insert)
+router.put('/:id', calController.updateById)
+
 

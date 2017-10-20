@@ -107,9 +107,14 @@ $(function () {
 
         vm.addEvent = function () {};
 
-        // vm.eventClicked = function (event) {
-        //     alert('Clicked', event);
-        // };
+        vm.eventClicked = function (event) {
+            debugger;
+            vm.item = event;
+            vm.item.startsAt = new Date(event.startsAt);
+            vm.item.endsAt = new Date(event.endsAt);
+
+            // alert('Clicked', event);
+        };
 
         // vm.eventEdited = function (event) {
         //     alert('Edited', event);
@@ -190,15 +195,26 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
     function CalServiceFactory($http, $q) {
         return {
             getAll: getAll,
-            insert: insert
+            getById: getById,
+            insert: insert,
+            update: update
+
         };
 
         function getAll() {
             return $http.get('/api/calendar').then(xhrSuccess).catch(onError);
         }
 
+        function getById(id, onSuccess, onError) {
+            return $http.get('/api/calendar/' + id).then(xhrSuccess).catch(onError);
+        }
+
         function insert(itemData, onSuccess, onError) {
             return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);
+        }
+
+        function update(itemData, onSuccess, onError) {
+            return $http.put('/api/calendar/' + itemData._id, itemData).then(xhrSuccess).catch(onError);
         }
 
         function xhrSuccess(response) {

@@ -10,18 +10,22 @@ function calService(options) {
 
     return {
         getAll: getAll,
-        // getOne: getOne,
-        insert: insert
-        // updateOne: updateOne,
+        getOne: getOne,
+        insert: insert,
+        updateOne: updateOne
         // removeOne: removeOne
     }
 
     function getAll(req, res) {
         let events = Event.find()
         if (req.query.active) {
-            notes.where('isArchived').eq(false)
+            events.where('isArchived').eq(false)
         }
         return events;
+    }
+
+    function getOne(queryCondition) {
+        return Event.findOne(queryCondition)
     }
 
     function insert(document) {
@@ -29,5 +33,10 @@ function calService(options) {
         return event.save()
     }
 
+    function updateOne(queryCondition, event) {
+        return Event.findOneAndUpdate(queryCondition, event, {
+            new: true
+        })
+    }
 
 }

@@ -46,9 +46,14 @@
 
         };
 
-        // vm.eventClicked = function (event) {
-        //     alert('Clicked', event);
-        // };
+        vm.eventClicked = function (event) {
+            debugger;
+            vm.item = event;
+            vm.item.startsAt = new Date(event.startsAt);
+            vm.item.endsAt = new Date(event.endsAt);
+
+            // alert('Clicked', event);
+        };
 
         // vm.eventEdited = function (event) {
         //     alert('Edited', event);
