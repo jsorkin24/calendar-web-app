@@ -17,6 +17,7 @@
 
         //Submit functionality changes based existence of id
         vm.submit = () => {
+        
             if (vm.item._id) {
                 calService.update(vm.item)
                     .then(_onEditSuccess)

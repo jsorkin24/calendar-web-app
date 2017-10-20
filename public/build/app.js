@@ -86,6 +86,7 @@ $(function () {
 
         //Submit functionality changes based existence of id
         vm.submit = function () {
+
             if (vm.item._id) {
                 calService.update(vm.item).then(_onEditSuccess).catch(_onError);
             } else {
@@ -176,26 +177,6 @@ $(function () {
         };
     }
 })();
-'use strict';
-
-angular.module('app.cal').factory('alert', function ($uibModal) {
-
-    function show(action, event) {
-        return $uibModal.open({
-            templateUrl: 'modalContent.html',
-            controller: function controller() {
-                var vm = this;
-                vm.action = action;
-                vm.event = event;
-            },
-            controllerAs: 'vm'
-        });
-    }
-
-    return {
-        show: show
-    };
-});
 'use strict';
 
 (function () {
