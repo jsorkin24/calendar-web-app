@@ -81,6 +81,7 @@ $(function () {
         vm.toggleAdd;
         vm.items = events;
         calendarConfig.dateFormatter = 'moment';
+        vm.submitButton = 'Add';
         _addDetail();
 
         //Submit functionality changes based existence of id
@@ -108,12 +109,14 @@ $(function () {
 
         //Will splice out object from array of events
         function _onDeleteSuccess() {
+            debugger;
             var eventList = vm.items;
             var removeIndex = eventList.findIndex(function (element, index, eventList) {
                 return element._id === vm.items._id;
             });
             eventList.splice(removeIndex, 1);
-            // vm.items = null;
+            vm.item = null;
+            vm.toggleAdd = !vm.toggleAdd;
         }
 
         //Calendar Code
@@ -126,6 +129,7 @@ $(function () {
         };
 
         vm.eventClicked = function (event) {
+            vm.submitButton = 'Update';
             vm.toggleAdd = !vm.toggleAdd;
             vm.item = event;
             vm.item.startsAt = new Date(event.startsAt); //as per requirement of bootstrap calendar
@@ -157,6 +161,7 @@ $(function () {
         };
 
         function _onSuccess(res) {
+            vm.toggleAdd = !vm.toggleAdd;
             vm.items.push(res.item);
             _addDetail();
             vm.item = null;
@@ -164,7 +169,7 @@ $(function () {
 
         function _onEditSuccess(res) {
             vm.item = null;
-            console.log('Edit Working');
+            vm.submitButton = 'Add';
         }
 
         function _onError(err) {

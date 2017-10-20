@@ -12,6 +12,7 @@
         vm.toggleAdd;
         vm.items = events;
         calendarConfig.dateFormatter = 'moment';
+        vm.submitButton = 'Add';
         _addDetail();
 
         //Submit functionality changes based existence of id
@@ -46,6 +47,7 @@
 
         //Will splice out object from array of events
         function _onDeleteSuccess() {
+            debugger;
             let eventList = vm.items;
             let removeIndex = eventList.findIndex(
                 (element, index, eventList) => {
@@ -53,7 +55,8 @@
                 }
             );
             eventList.splice(removeIndex, 1);
-            // vm.items = null;
+            vm.item = null;
+            vm.toggleAdd = !vm.toggleAdd;
         }
 
 
@@ -68,6 +71,7 @@
         };
 
         vm.eventClicked = function (event) {
+            vm.submitButton = 'Update';
             vm.toggleAdd = !vm.toggleAdd;
             vm.item = event;
             vm.item.startsAt = new Date(event.startsAt); //as per requirement of bootstrap calendar
@@ -100,6 +104,7 @@
 
 
         function _onSuccess(res) {
+            vm.toggleAdd = !vm.toggleAdd;
             vm.items.push(res.item);
             _addDetail();
             vm.item = null;
@@ -107,7 +112,8 @@
 
         function _onEditSuccess(res) {
             vm.item = null;
-            console.log('Edit Working')
+            vm.submitButton = 'Add';
+
         }
 
         function _onError(err) {
