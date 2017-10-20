@@ -2,11 +2,11 @@
     <div class="row">
         <!-- Buttons START-->
         <div class="col-sm-10 col-sm-offset-1">
-            <div class="col-sm-6">
+            <div class="col-xs-12 col-sm-6">
                 <button class="btn btn-primary btn-create" ng-click="calCtrl.addEvent()">
-Create
-                                        <i class='glyphicon glyphicon-edit'></i>
-            </button>
+                    Create
+                    <i class='glyphicon glyphicon-edit'></i>
+                </button>
                 <div class="btn-group">
                     <button class="btn btn-primary" mwl-date-modifier date="calCtrl.viewDate" decrement="calCtrl.calendarView" ng-click="calCtrl.cellIsOpen = false">
                         <i class='glyphicon glyphicon-triangle-left'></i>
@@ -20,12 +20,8 @@ Create
                 </div>
             </div>
 
-            <!-- <div class="col-md-4 text-center">
-                <img src='public/images/gift-card.gif'>
-                <img src='public/images/foodfetti-top.svg'>
-            </div> -->
-            <br class="visible-xs visible-sm">
-            <div class="col-sm-6">
+
+            <div class="hidden-xs col-sm-6">
                 <div class="btn-group pull-right">
                     <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'day'" ng-click="calCtrl.cellIsOpen = false">Day</label>
                     <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'week'" ng-click="calCtrl.cellIsOpen = false">Week</label>
@@ -44,14 +40,7 @@ Create
     <!-- Add New Event Section START-->
     <div class='row'>
         <div class="col-sm-10 col-sm-offset-1 calendar animate-show-hide" ng-show='calCtrl.toggleAdd'>
-
-            <h3 id="event-editor">
-                Edit events
-                <div class="clearfix"></div>
-            </h3>
-
             <table class="table table-bordered">
-
                 <thead>
                     <tr>
                         <th>Title</th>
@@ -61,10 +50,8 @@ Create
                         <th>Actions</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr>
-                        <!-- <tr ng-repeat="event in calCtrl.events track by $index"> -->
                         <td>
                             <input type="text" class="form-control" ng-model="calCtrl.item.title">
                         </td>
@@ -76,13 +63,13 @@ Create
                                 <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.startsAt" is-open="dateStart"
                                     close-text="Close">
                                 <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="dateStart = !dateStart">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        ng-click="dateStart = !dateStart">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
                             </p>
                             <div uib-timepicker ng-model="item.startsAt" hour-step="1" minute-step="15" show-meridian="true">
                             </div>
@@ -92,50 +79,57 @@ Create
                                 <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.endsAt" is-open="dateEnd"
                                     close-text="Close">
                                 <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="dateEnd = !dateEnd">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
-            </span>
+                                    <button
+                                        type="button"
+                                        class="btn btn-default"
+                                        ng-click="dateEnd = !dateEnd">
+                                        <i class="glyphicon glyphicon-calendar"></i>
+                                    </button>
+                                </span>
                             </p>
                             <div uib-timepicker ng-model="calCtrl.item.endsAt" hour-step="1" minute-step="15" show-meridian="true">
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-success" ng-click="calCtrl.submit()">
-                                <i class='glyphicon glyphicon-ok'></i>
+                            <button class="btn btn-success btn-block" ng-click="calCtrl.submit()">
+                                Add <i class='glyphicon glyphicon-ok'></i>
                             </button>
+                            <button class="btn btn-danger btn-block" ng-click="calCtrl.delete(calCtrl.item._id)()">
+                                Delete <i class='glyphicon glyphicon-remove'></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <button class="btn btn-danger" ng-click="calCtrl.delete(calCtrl.item._id)()">
-                                <i class='glyphicon glyphicon-remove'></i>
-                            </button>
-        </td>
-        </tr>
-        </tbody>
-
-        </table>
     </div>
-</div>
 
 
 
-<!-- Add New Event Section END -->
-<div class='row'>
-    <div class="col-sm-10 col-sm-offset-1 calendar">
-        <h2 class="text-center month">{{ calCtrl.calendarTitle }}</h2>
-        <br>
-        <mwl-calendar events="calCtrl.items" view="calCtrl.calendarView" view-title="calCtrl.calendarTitle" view-date="calCtrl.viewDate"
-            on-event-click="calCtrl.eventClicked(calendarEvent)" on-event-times-changed="calCtrl.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-            cell-is-open="calCtrl.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="calCtrl.modifyCell(calendarCell)"
-            cell-auto-open-disabled="true" on-timespan-click="calCtrl.timespanClicked(calendarDate, calendarCell)">
-        </mwl-calendar>
-        <br>
-        <br>
-        <br>
+    <!-- Add New Event Section END -->
+    <div class='row'>
+        <div class="col-sm-10 col-sm-offset-1 calendar">
+            <div class='row'>
+                <div class='col-sm-6 col-sm-offset-3 display-inline text-center'>
+                    <img src='public/images/gift-card.gif'>
+                    <h2 class="text-center month display-inline">{{ calCtrl.calendarTitle }}</h2>
+                    <img src='public/images/gift-card.gif'>
+                    <!-- <div class="col-md-4 text-center">
+                <!-- <img src='public/images/foodfetti-top.svg'> -->
+                </div>
+            </div>
+
+            <br>
+            <mwl-calendar events="calCtrl.items" view="calCtrl.calendarView" view-title="calCtrl.calendarTitle" view-date="calCtrl.viewDate"
+                on-event-click="calCtrl.eventClicked(calendarEvent)" on-event-times-changed="calCtrl.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+                cell-is-open="calCtrl.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="calCtrl.modifyCell(calendarCell)"
+                cell-auto-open-disabled="true" on-timespan-click="calCtrl.timespanClicked(calendarDate, calendarCell)">
+            </mwl-calendar>
+            <br>
+            <br>
+            <br>
+        </div>
     </div>
-</div>
 
 
 

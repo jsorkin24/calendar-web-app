@@ -11,9 +11,10 @@
         var vm = this;
         vm.toggleAdd;
         vm.items = events;
-        addDescription();
+        calendarConfig.dateFormatter = 'moment';
+        _addDetail();
 
-        //submit functionality changes based existence of id
+        //Submit functionality changes based existence of id
         vm.submit = () => {
             if (vm.item._id) {
                 calService.update(vm.item)
@@ -31,29 +32,28 @@
                 .catch(_onError)
         }
 
-        //will add description to banner
-        function addDescription() {
-            debugger; 
+        //will add description to banner and add correct formatted javascript date object
+        function _addDetail() {
             for (var i = 0; i < vm.items.length; i++) {
-                vm.items[i].actions =
-                    [{
-                        label: vm.items[i].description,
-                    }]
+                vm.items[i].actions = [{
+                    label: vm.items[i].description,
+                }]
+                vm.items[i].startsAt = new Date(vm.items[i].startsAt); //as per requirement of bootstrap calendar
+                vm.items[i].endsAt = new Date(vm.items[i].endsAt); //as per requirement of bootstrap calendar
             }
+
         }
 
-        //will splice out object from array of events
+        //Will splice out object from array of events
         function _onDeleteSuccess() {
-            debugger;
             let eventList = vm.items;
             let removeIndex = eventList.findIndex(
                 (element, index, eventList) => {
-                    return element._id === item._id;
+                    return element._id === vm.items._id;
                 }
             );
             eventList.splice(removeIndex, 1);
         }
-
 
 
         //Calendar Code
@@ -67,14 +67,10 @@
         };
 
         vm.eventClicked = function (event) {
-            debugger;
             vm.toggleAdd = !vm.toggleAdd;
-
             vm.item = event;
             vm.item.startsAt = new Date(event.startsAt); //as per requirement of bootstrap calendar
             vm.item.endsAt = new Date(event.endsAt); //as per requirement of bootstrap calendar
-
-            // alert('Clicked', event);
         };
 
         vm.toggle = function ($event, field, event) {
@@ -84,7 +80,6 @@
         };
 
         vm.timespanClicked = function (date, cell) {
-
             if (vm.calendarView === 'month') {
                 if ((vm.cellIsOpen && moment(date).startOf('day').isSame(moment(vm.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
                     vm.cellIsOpen = false;
@@ -100,22 +95,20 @@
                     vm.viewDate = date;
                 }
             }
-
         };
 
 
         function _onSuccess(res) {
             vm.items.push(res.item);
-            debugger;
-
+            _addDetail();
             vm.item = null;
         }
 
         function _onEditSuccess(res) {
             vm.item = null;
-
             console.log('Edit Working')
         }
+
         function _onError(err) {
             console.log(`Error: ${err.errors}`);
         };

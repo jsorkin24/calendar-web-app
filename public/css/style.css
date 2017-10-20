@@ -15,21 +15,35 @@ body {
     justify-content: center;
     min-height: 100vh;
     font-family: 'Raleway', sans-serif;
-
-}  
+}
 
 img {
     padding-top: 10px;
     align-items: center;
-    width: 75%;
+    width: 20%;
+    /* float: left; */
+    display: inline-block;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.display-inline {
+    display: inline;
+}
 
 [ng-click],
 [data-ng-click],
 [x-ng-click] {
     cursor: pointer;
-}  
+}
 
 .calendar {
     background: white;
@@ -45,27 +59,22 @@ img {
     color: #6EB590;
 }
 
-
 .animate-show-hide {
-   transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
-
 
 .animate-show-hide.ng-hide {
     opacity: 0;
-   transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 .cal-row-head {
     color: white;
     border-top: 1px solid #eee;
-        font-size: 12px;
+    font-size: 12px;
     background-color: #737371;
     font-weight: 200;
-    
 }
-
-
 
 .btn-group {
     padding-top: 30px;
@@ -79,16 +88,14 @@ img {
     align-content: center;
 }
 
-
 .btn-primary:hover {
     color: white;
     background-color: #3a99ac;
 }
 
-.btn-create{
-    margin-top:30px;
+.btn-create {
+    margin-top: 30px;
     margin-right: 10px;
-
 }
 
 .calendar th {
@@ -97,19 +104,18 @@ img {
     color: white;
     text-transform: uppercase;
     font-weight: 200;
-      
 }
 
 textarea {
-        border: 1px solid #ccc;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
 
 textarea:focus {
     border-color: #66afe9;
     outline: 0;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
 mwl-calendar .cal-month-box .cal-row-head {
@@ -123,17 +129,17 @@ mwl-calendar .badge-important {
     background-color: #6EB590;
 }
 
-
 mwl-calendar .cal-row-head:hover {
     background-color: #737371;
 }
+
 mwl-calendar .cal-day-today {
     background-color: #f6f6f6;
 }
 
 mwl-calendar .cal-slide-content {
-      background-color: #6EB590;
-      box-shadow: none;
+    background-color: #6EB590;
+    box-shadow: none;
 }
 
 mwl-calendar .event {
