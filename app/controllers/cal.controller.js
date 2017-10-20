@@ -10,7 +10,21 @@ module.exports = calController
 
 function calController() {
     return {
+        getAll: getAll,
         insert: insert
+    }
+
+    function getAll(req, res) {
+        calService
+            .getAll(req, res)
+            .then(events => {
+                const responseModel = new responses.ItemsResponse();
+                responseModel.items = events;
+                res.json(responseModel);
+            })
+            .catch(err => {
+                res.status(500).send(new responses.ErrorResponse(err));
+            });
     }
 
     function insert(req, res) {

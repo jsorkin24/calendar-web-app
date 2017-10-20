@@ -4,15 +4,16 @@
         .module('app.cal')
         .controller('calController', CalController);
 
-    CalController.$inject = ['calService', "moment", "calendarConfig"] //injecting to avoid minification
+    CalController.$inject = ['events', 'calService', "moment", "calendarConfig"] //injecting to avoid minification
 
-    function CalController(calService, moment, calendarConfig) {
+    function CalController(events, calService, moment, calendarConfig) {
         'use strict'
         var vm = this;
 
+        vm.items = events;
+
         vm.add = () => {
-            debugger;
-            calService.insert(vm.events)
+            calService.insert(vm.item)
                 .then(_onSuccess)
                 .catch(_onError)
         }
@@ -36,35 +37,30 @@
 
             }
         }];
-        vm.events = [];
+
 
         vm.cellIsOpen = false;
 
         vm.addEvent = function () {
-            vm.events.push({
-                title: 'New event',
-                description: 'Description',
-                startsAt: moment().startOf('day').toDate(),
-                endsAt: moment().endOf('day').toDate()
-            });
+
 
         };
 
-        vm.eventClicked = function (event) {
-            alert('Clicked', event);
-        };
+        // vm.eventClicked = function (event) {
+        //     alert('Clicked', event);
+        // };
 
-        vm.eventEdited = function (event) {
-            alert('Edited', event);
-        };
+        // vm.eventEdited = function (event) {
+        //     alert('Edited', event);
+        // };
 
-        vm.eventDeleted = function (event) {
-            alert('Deleted', event);
-        };
+        // vm.eventDeleted = function (event) {
+        //     alert('Deleted', event);
+        // };
 
-        vm.eventTimesChanged = function (event) {
-            alert('Dropped or resized', event);
-        };
+        // vm.eventTimesChanged = function (event) {
+        //     alert('Dropped or resized', event);
+        // };
 
         vm.toggle = function ($event, field, event) {
             $event.preventDefault();
@@ -94,8 +90,8 @@
 
 
         function _onSuccess(res) {
-            console.log(res);
-
+            debugger;
+            vm.items.push(res.item);
         }
 
         function _onError(err) {

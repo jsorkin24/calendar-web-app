@@ -43,9 +43,19 @@ $(function () {
                 root: {
                     templateUrl: 'public/modules/calendar/layout.html',
                     controller: 'calController as calCtrl',
-                    resolve: {}
+                    resolve: {
+                        events: getAllEvents
+                    }
                 }
             }
+        });
+    }
+
+    function getAllEvents(calService) {
+        return calService.getAll().then(function (data) {
+            return data.items;
+        }).catch(function (error) {
+            console.log(error);
         });
     }
 })();
@@ -63,16 +73,17 @@ $(function () {
 
     angular.module('app.cal').controller('calController', CalController);
 
-    CalController.$inject = ['calService', "moment", "calendarConfig"]; //injecting to avoid minification
+    CalController.$inject = ['events', 'calService', "moment", "calendarConfig"]; //injecting to avoid minification
 
-    function CalController(calService, moment, calendarConfig) {
+    function CalController(events, calService, moment, calendarConfig) {
         'use strict';
 
         var vm = this;
 
+        vm.items = events;
+
         vm.add = function () {
-            debugger;
-            calService.insert(vm.events).then(_onSuccess).catch(_onError);
+            calService.insert(vm.item).then(_onSuccess).catch(_onError);
         };
 
         //Calendar Code
@@ -91,34 +102,26 @@ $(function () {
                 alert('Deleted', args.calendarEvent);
             }
         }];
-        vm.events = [];
 
         vm.cellIsOpen = false;
 
-        vm.addEvent = function () {
-            vm.events.push({
-                title: 'New event',
-                description: 'Description',
-                startsAt: moment().startOf('day').toDate(),
-                endsAt: moment().endOf('day').toDate()
-            });
-        };
+        vm.addEvent = function () {};
 
-        vm.eventClicked = function (event) {
-            alert('Clicked', event);
-        };
+        // vm.eventClicked = function (event) {
+        //     alert('Clicked', event);
+        // };
 
-        vm.eventEdited = function (event) {
-            alert('Edited', event);
-        };
+        // vm.eventEdited = function (event) {
+        //     alert('Edited', event);
+        // };
 
-        vm.eventDeleted = function (event) {
-            alert('Deleted', event);
-        };
+        // vm.eventDeleted = function (event) {
+        //     alert('Deleted', event);
+        // };
 
-        vm.eventTimesChanged = function (event) {
-            alert('Dropped or resized', event);
-        };
+        // vm.eventTimesChanged = function (event) {
+        //     alert('Dropped or resized', event);
+        // };
 
         vm.toggle = function ($event, field, event) {
             $event.preventDefault();
@@ -146,7 +149,8 @@ $(function () {
         };
 
         function _onSuccess(res) {
-            console.log(res);
+            debugger;
+            vm.items.push(res.item);
         }
 
         function _onError(err) {
@@ -185,8 +189,13 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
 
     function CalServiceFactory($http, $q) {
         return {
+            getAll: getAll,
             insert: insert
         };
+
+        function getAll() {
+            return $http.get('/api/calendar').then(xhrSuccess).catch(onError);
+        }
 
         function insert(itemData, onSuccess, onError) {
             return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);

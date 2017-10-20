@@ -8,7 +8,14 @@
 
     function CalServiceFactory($http, $q) {
         return {
+            getAll: getAll,
             insert: insert
+        }
+
+        function getAll() {
+            return $http.get('/api/calendar')
+                .then(xhrSuccess)
+                .catch(onError)
         }
 
         function insert(itemData, onSuccess, onError) {

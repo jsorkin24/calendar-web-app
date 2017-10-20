@@ -16,10 +16,22 @@
                         templateUrl: 'public/modules/calendar/layout.html',
                         controller: 'calController as calCtrl',
                         resolve: {
+                            events: getAllEvents
                         }
                     }
                 }
             })
+    }
+
+    function getAllEvents(calService) {
+        return calService
+            .getAll()
+            .then(data => {
+                return data.items;
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 
 })();
