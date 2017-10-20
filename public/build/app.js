@@ -109,7 +109,6 @@ $(function () {
 
         //Will splice out object from array of events
         function _onDeleteSuccess() {
-            debugger;
             var eventList = vm.items;
             var removeIndex = eventList.findIndex(function (element, index, eventList) {
                 return element._id === vm.items._id;

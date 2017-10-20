@@ -47,7 +47,6 @@
 
         //Will splice out object from array of events
         function _onDeleteSuccess() {
-            debugger;
             let eventList = vm.items;
             let removeIndex = eventList.findIndex(
                 (element, index, eventList) => {
