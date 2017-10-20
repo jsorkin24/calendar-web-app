@@ -61,25 +61,6 @@ $(function () {
 (function () {
     'use strict';
 
-    angular.module('app.services').factory('calService', CalServiceFactory);
-
-    CalServiceFactory.$inject = ['$http', '$q'];
-
-    function CalServiceFactory($http, $q) {
-        return {
-            insert: insert
-        };
-
-        function insert(itemData, onSuccess, onError) {
-            return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);
-        }
-    }
-})();
-'use strict';
-
-(function () {
-    'use strict';
-
     angular.module('app.cal').controller('calController', CalController);
 
     CalController.$inject = ['calService', "moment", "calendarConfig"]; //injecting to avoid minification
@@ -89,9 +70,14 @@ $(function () {
 
         var vm = this;
 
+        vm.add = function () {
+            debugger;
+            calService.insert(vm.events).then(_onSuccess).catch(_onError);
+        };
+
+        //Calendar Code
         vm.calendarView = 'month';
         vm.viewDate = new Date();
-        console.log(vm.events);
         var actions = [{
             label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
             onClick: function onClick(args) {
@@ -107,17 +93,14 @@ $(function () {
         }];
         vm.events = [];
 
-        vm.cellIsOpen = true;
+        vm.cellIsOpen = false;
 
         vm.addEvent = function () {
             vm.events.push({
                 title: 'New event',
                 description: 'Description',
                 startsAt: moment().startOf('day').toDate(),
-                endsAt: moment().endOf('day').toDate(),
-                color: calendarConfig.colorTypes.important,
-                draggable: true,
-                resizable: true
+                endsAt: moment().endOf('day').toDate()
             });
         };
 
@@ -161,6 +144,14 @@ $(function () {
                 }
             }
         };
+
+        function _onSuccess(res) {
+            console.log(res);
+        }
+
+        function _onError(err) {
+            console.log('Error: ' + err.errors);
+        };
     }
 })();
 'use strict';
@@ -183,3 +174,31 @@ angular.module('app.cal').factory('alert', function ($uibModal) {
         show: show
     };
 });
+'use strict';
+
+(function () {
+    'use strict';
+
+    angular.module('app.services').factory('calService', CalServiceFactory);
+
+    CalServiceFactory.$inject = ['$http', '$q'];
+
+    function CalServiceFactory($http, $q) {
+        return {
+            insert: insert
+        };
+
+        function insert(itemData, onSuccess, onError) {
+            return $http.post('/api/calendar', itemData).then(xhrSuccess).catch(onError);
+        }
+
+        function xhrSuccess(response) {
+            return response.data;
+        }
+
+        function onError(error) {
+            console.log(error.data);
+            return $q.reject(error.data);
+        }
+    }
+})();

@@ -10,9 +10,17 @@
         'use strict'
         var vm = this;
 
+        vm.add = () => {
+            debugger;
+            calService.insert(vm.events)
+                .then(_onSuccess)
+                .catch(_onError)
+        }
+
+
+        //Calendar Code
         vm.calendarView = 'month';
         vm.viewDate = new Date();
-        console.log(vm.events);
         var actions = [{
             label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
             onClick: function (args) {
@@ -30,18 +38,16 @@
         }];
         vm.events = [];
 
-        vm.cellIsOpen = true;
+        vm.cellIsOpen = false;
 
         vm.addEvent = function () {
             vm.events.push({
                 title: 'New event',
                 description: 'Description',
                 startsAt: moment().startOf('day').toDate(),
-                endsAt: moment().endOf('day').toDate(),
-                color: calendarConfig.colorTypes.important,
-                draggable: true,
-                resizable: true
+                endsAt: moment().endOf('day').toDate()
             });
+
         };
 
         vm.eventClicked = function (event) {
@@ -85,6 +91,18 @@
             }
 
         };
+
+
+        function _onSuccess(res) {
+            console.log(res);
+
+        }
+
+        function _onError(err) {
+            console.log(`Error: ${err.errors}`);
+        };
+
+
 
     }
 })();

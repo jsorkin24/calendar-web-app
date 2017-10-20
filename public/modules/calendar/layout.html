@@ -54,8 +54,7 @@
         <thead>
             <tr>
                 <th>Title</th>
-                <th>Primary color</th>
-                <th>Secondary color</th>
+                <th>Description</th>
                 <th>Starts at</th>
                 <th>Ends at</th>
                 <th>Remove</th>
@@ -68,7 +67,7 @@
                     <input type="text" class="form-control" ng-model="event.title">
                 </td>
                 <td>
-                    <input class="form-control" colorpicker type="text" ng-model="event.color.primary">
+                    <input class="form-control" colorpicker type="text" ng-model="event.description">
                 </td>
                 <td>
                     <input class="form-control" colorpicker type="text" ng-model="event.color.secondary">
@@ -108,6 +107,9 @@
                 <td>
                     <button class="btn btn-danger" ng-click="calCtrl.events.splice($index, 1)">
             Delete
+          </button>
+                    <button class="btn btn-primary" ng-click="calCtrl.add()">
+            Add to Calendar
           </button>
                 </td>
             </tr>

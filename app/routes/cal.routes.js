@@ -5,3 +5,4 @@ const path = require('path');
 module.exports = router;
 
 // api routes ===========================================================
+router.post('/', calController.insert)
