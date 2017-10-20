@@ -1,0 +1,67 @@
+body {
+    background-image: linear-gradient(-41deg, #4CA1AF 0%, #c2e59c 100%);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-height: 100vh;
+}  
+
+img {
+    align-items: center;
+    width: 100px;
+    height: 100px;
+}
+.calendar th {
+    background-color: #F1A68C;
+    text-align: center;
+    color: white;
+}
+
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}  */
+
+
+ body { 
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.calendar {
+    background: white;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.calendar .month {
+    margin-top: 0;
+    font-weight: normal;
+    font-size: 3em;
+    color: #6EB590;
+}
+
+mwl-calendar .cal-month-box .cal-row-head {
+    text-transform: uppercase;
+    margin-bottom: .5em;
+    float: left;
+    text-decoration: none;
+    /* margin-top: 30px; */
+}
+mwl-calendar .badge-important {
+    background-color: #F1A68C;
+}
+
+

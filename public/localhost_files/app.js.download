@@ -14,9 +14,10 @@ $(function () {
 
     angular.module('app', [
     //3rd party
-    'ui.router', 'ui.bootstrap', 'mwl.calendar', 'ngAnimate',
+    'ui.router', 'ui.bootstrap', 'mwl.calendar',
     //layout
-    'app.cal', 'app.services']).config(RouteConfig).run();
+    'app.cal', 'app.services']) //modules for app
+    .config(RouteConfig).run();
 
     function RouteConfig($stateProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise("/");
@@ -78,38 +79,30 @@ $(function () {
         'use strict';
 
         var vm = this;
-        vm.toggleAdd;
+        vm.submitButton = 'Add Event';
+
         vm.items = events;
-        addDescription();
 
         //submit functionality changes based existence of id
         vm.submit = function () {
             if (vm.item._id) {
+                debugger;
                 calService.update(vm.item).then(_onEditSuccess).catch(_onError);
             } else {
                 calService.insert(vm.item).then(_onSuccess).catch(_onError);
             }
         };
         vm.delete = function (id) {
+            debugger;
             calService.remove(id).then(_onDeleteSuccess).catch(_onError);
         };
-
-        //will add description to banner
-        function addDescription() {
-            debugger;
-            for (var i = 0; i < vm.items.length; i++) {
-                vm.items[i].actions = [{
-                    label: vm.items[i].description
-                }];
-            }
-        }
 
         //will splice out object from array of events
         function _onDeleteSuccess() {
             debugger;
             var eventList = vm.items;
             var removeIndex = eventList.findIndex(function (element, index, eventList) {
-                return element._id === item._id;
+                return element._id === data.item._id;
             });
             eventList.splice(removeIndex, 1);
         }
@@ -117,22 +110,45 @@ $(function () {
         //Calendar Code
         vm.calendarView = 'month';
         vm.viewDate = new Date();
+        var actions = [{
+            label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
+            onClick: function onClick(args) {
+                // alert.show('Edited', args.calendarEvent);
+                alert('Edited', args.calendarEvent);
+            }
+        }, {
+            label: '<i class=\'glyphicon glyphicon-remove\'></i>',
+            onClick: function onClick(args) {
+                // alert.show('Deleted', args.calendarEvent);
+                alert('Deleted', args.calendarEvent);
+            }
+        }];
+
         vm.cellIsOpen = false;
 
-        vm.addEvent = function () {
-            vm.toggleAdd = !vm.toggleAdd;
-        };
+        vm.addEvent = function () {};
 
         vm.eventClicked = function (event) {
             debugger;
-            vm.toggleAdd = !vm.toggleAdd;
-
+            vm.submitButton = 'Update Event';
             vm.item = event;
             vm.item.startsAt = new Date(event.startsAt); //as per requirement of bootstrap calendar
             vm.item.endsAt = new Date(event.endsAt); //as per requirement of bootstrap calendar
 
             // alert('Clicked', event);
         };
+
+        // vm.eventEdited = function (event) {
+        //     alert('Edited', event);
+        // };
+
+        // vm.eventDeleted = function (event) {
+        //     alert('Deleted', event);
+        // };
+
+        // vm.eventTimesChanged = function (event) {
+        //     alert('Dropped or resized', event);
+        // };
 
         vm.toggle = function ($event, field, event) {
             $event.preventDefault();
@@ -161,14 +177,9 @@ $(function () {
 
         function _onSuccess(res) {
             vm.items.push(res.item);
-            debugger;
-
-            vm.item = null;
         }
 
         function _onEditSuccess(res) {
-            vm.item = null;
-
             console.log('Edit Working');
         }
         function _onError(err) {

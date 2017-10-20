@@ -6,10 +6,11 @@
             'ui.router',
             'ui.bootstrap',
             'mwl.calendar',
+            'ngAnimate',
             //layout
             'app.cal',
             'app.services',
-        ]) //modules for app
+        ])
         .config(RouteConfig)
         .run()
 

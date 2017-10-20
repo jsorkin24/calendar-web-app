@@ -1,80 +1,81 @@
-<div class="col-sm-6 col-sm-offset-3">
-    <h2 class="text-center">{{ calCtrl.calendarTitle }}</h2>
-
+<div class='container'>
     <div class="row">
+        <!-- Buttons START-->
+        <div class="col-sm-10 col-sm-offset-1">
+            <div class="col-sm-6">
+                <button class="btn btn-primary btn-create" ng-click="calCtrl.addEvent()">
+Create
+                                        <i class='glyphicon glyphicon-edit'></i>
+            </button>
+                <div class="btn-group">
+                    <button class="btn btn-primary" mwl-date-modifier date="calCtrl.viewDate" decrement="calCtrl.calendarView" ng-click="calCtrl.cellIsOpen = false">
+                        <i class='glyphicon glyphicon-triangle-left'></i>
+                    </button>
+                    <button class="btn btn-default" mwl-date-modifier date="calCtrl.viewDate" set-to-today ng-click="calCtrl.cellIsOpen = false">
+                        Today
+                    </button>
+                    <button class="btn btn-primary" mwl-date-modifier date="calCtrl.viewDate" increment="calCtrl.calendarView" ng-click="calCtrl.cellIsOpen = false">
+                        <i class='glyphicon glyphicon-triangle-right'></i>
+                    </button>
+                </div>
+            </div>
 
-        <div class="col-md-6 text-center">
-            <div class="btn-group">
+            <!-- <div class="col-md-4 text-center">
+                <img src='public/images/gift-card.gif'>
+                <img src='public/images/foodfetti-top.svg'>
+            </div> -->
+            <br class="visible-xs visible-sm">
+            <div class="col-sm-6">
+                <div class="btn-group pull-right">
+                    <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'day'" ng-click="calCtrl.cellIsOpen = false">Day</label>
+                    <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'week'" ng-click="calCtrl.cellIsOpen = false">Week</label>
+                    <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'month'" ng-click="calCtrl.cellIsOpen = false">Month</label>
+                    <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'year'" ng-click="calCtrl.cellIsOpen = false">Year</label>
 
-                <button class="btn btn-primary" mwl-date-modifier date="calCtrl.viewDate" decrement="calCtrl.calendarView" ng-click="calCtrl.cellIsOpen = false">
-          Previous
-        </button>
-                <button class="btn btn-default" mwl-date-modifier date="calCtrl.viewDate" set-to-today ng-click="calCtrl.cellIsOpen = false">
-          Today
-        </button>
-                <button class="btn btn-primary" mwl-date-modifier date="calCtrl.viewDate" increment="calCtrl.calendarView" ng-click="calCtrl.cellIsOpen = false">
-          Next
-        </button>
+                </div>
+
             </div>
         </div>
-
-        <br class="visible-xs visible-sm">
-
-        <div class="col-md-6 text-center">
-            <div class="btn-group">
-                <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'year'" ng-click="calCtrl.cellIsOpen = false">Year</label>
-                <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'month'" ng-click="calCtrl.cellIsOpen = false">Month</label>
-                <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'week'" ng-click="calCtrl.cellIsOpen = false">Week</label>
-                <label class="btn btn-primary" ng-model="calCtrl.calendarView" uib-btn-radio="'day'" ng-click="calCtrl.cellIsOpen = false">Day</label>
-            </div>
-        </div>
-
     </div>
 
-    <br>
+    <!-- Buttons END-->
 
-    <mwl-calendar events="calCtrl.items" view="calCtrl.calendarView" view-title="calCtrl.calendarTitle" view-date="calCtrl.viewDate"
-        on-event-click="calCtrl.eventClicked(calendarEvent)" on-event-times-changed="calCtrl.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-        cell-is-open="calCtrl.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="calCtrl.modifyCell(calendarCell)"
-        cell-auto-open-disabled="true" on-timespan-click="calCtrl.timespanClicked(calendarDate, calendarCell)">
-    </mwl-calendar>
 
-    <br><br><br>
+    <!-- Add New Event Section START-->
+    <div class='row'>
+        <div class="col-sm-10 col-sm-offset-1 calendar animate-show-hide" ng-show='calCtrl.toggleAdd'>
 
-    <h3 id="event-editor">
-        Edit events
-        <button class="btn btn-primary pull-right" ng-click="calCtrl.addEvent()">
-      Add new
-    </button>
-        <div class="clearfix"></div>
-    </h3>
+            <h3 id="event-editor">
+                Edit events
+                <div class="clearfix"></div>
+            </h3>
 
-    <table class="table table-bordered">
+            <table class="table table-bordered">
 
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Starts at</th>
-                <th>Ends at</th>
-                <th>Remove</th>
-            </tr>
-        </thead>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Starts</th>
+                        <th>Ends</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
 
-        <tbody>
-            <tr>
-                <!-- <tr ng-repeat="event in calCtrl.events track by $index"> -->
-                <td>
-                    <input type="text" class="form-control" ng-model="calCtrl.item.title">
-                </td>
-                <td>
-                    <input class="form-control" colorpicker type="text" ng-model="calCtrl.item.description">
-                </td>
-                <td>
-                    <p class="input-group" style="max-width: 250px">
-                        <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.startsAt" is-open="dateStart"
-                            close-text="Close">
-                        <span class="input-group-btn">
+                <tbody>
+                    <tr>
+                        <!-- <tr ng-repeat="event in calCtrl.events track by $index"> -->
+                        <td>
+                            <input type="text" class="form-control" ng-model="calCtrl.item.title">
+                        </td>
+                        <td>
+                            <textarea colorpicker type="text" rows='6' ng-model="calCtrl.item.description"></textarea>
+                        </td>
+                        <td>
+                            <p class="input-group" style="max-width: 250px">
+                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.startsAt" is-open="dateStart"
+                                    close-text="Close">
+                                <span class="input-group-btn">
               <button
                 type="button"
                 class="btn btn-default"
@@ -82,15 +83,15 @@
                 <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
-                    </p>
-                    <div uib-timepicker ng-model="item.startsAt" hour-step="1" minute-step="15" show-meridian="true">
-                    </div>
-                </td>
-                <td>
-                    <p class="input-group" style="max-width: 250px">
-                        <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.endsAt" is-open="dateEnd"
-                            close-text="Close">
-                        <span class="input-group-btn">
+                            </p>
+                            <div uib-timepicker ng-model="item.startsAt" hour-step="1" minute-step="15" show-meridian="true">
+                            </div>
+                        </td>
+                        <td>
+                            <p class="input-group" style="max-width: 250px">
+                                <input type="text" class="form-control" readonly uib-datepicker-popup="dd MMMM yyyy" ng-model="calCtrl.item.endsAt" is-open="dateEnd"
+                                    close-text="Close">
+                                <span class="input-group-btn">
               <button
                 type="button"
                 class="btn btn-default"
@@ -98,20 +99,45 @@
                 <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
-                    </p>
-                    <div uib-timepicker ng-model="calCtrl.item.endsAt" hour-step="1" minute-step="15" show-meridian="true">
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-danger" ng-click="calCtrl.delete(calCtrl.item._id)()">
-            Delete
-          </button>
-                    <button class="btn btn-primary" ng-click="calCtrl.add()">
-            Add to Calendar
-          </button>
-                </td>
-            </tr>
+                            </p>
+                            <div uib-timepicker ng-model="calCtrl.item.endsAt" hour-step="1" minute-step="15" show-meridian="true">
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btn btn-success" ng-click="calCtrl.submit()">
+                                <i class='glyphicon glyphicon-ok'></i>
+                            </button>
+        </div>
+        <button class="btn btn-danger" ng-click="calCtrl.delete(calCtrl.item._id)()">
+                                <i class='glyphicon glyphicon-remove'></i>
+                            </button>
+        </td>
+        </tr>
         </tbody>
 
-    </table>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Add New Event Section END -->
+<div class='row'>
+    <div class="col-sm-10 col-sm-offset-1 calendar">
+        <h2 class="text-center month">{{ calCtrl.calendarTitle }}</h2>
+        <br>
+        <mwl-calendar events="calCtrl.items" view="calCtrl.calendarView" view-title="calCtrl.calendarTitle" view-date="calCtrl.viewDate"
+            on-event-click="calCtrl.eventClicked(calendarEvent)" on-event-times-changed="calCtrl.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
+            cell-is-open="calCtrl.cellIsOpen" day-view-start="06:00" day-view-end="22:59" day-view-split="30" cell-modifier="calCtrl.modifyCell(calendarCell)"
+            cell-auto-open-disabled="true" on-timespan-click="calCtrl.timespanClicked(calendarDate, calendarCell)">
+        </mwl-calendar>
+        <br>
+        <br>
+        <br>
+    </div>
+</div>
+
+
+
+
 </div>
