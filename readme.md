@@ -1,7 +1,6 @@
 # Calendar Web App
- <h4 align-"center">:computer: A calendar web app for all your calendary needs. Never miss an appointment. Or do.</h4><br>
-
- <h4 align-"center">Calendary is a basic cross-platform desktop calendar app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. </h4>
+ <h4 align="center">:computer: A calendar web app for all your calendary needs. Never miss an appointment. Or do.</h4>
+ <h4 align="center">Calendary is a basic cross-platform desktop calendar app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. </h4>
 
 ## Table of contents
 
