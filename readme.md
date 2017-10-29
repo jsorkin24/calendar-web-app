@@ -15,10 +15,10 @@ Calendary is a basic cross-platform desktop :computer: calendar app that shows y
 
 ### Screenshots:
 <p align="left">
-  <img src="calendar-image-1.png" width="350"/>
-  <img src="calendar-image-2.png" width="350"/>
-  <img src="calendar-image-3.png" width="350"/>
-  <img src="calendar-image-4.png" width="350"/>
+  <img src="images/calendar-image-1.png" width="350"/>
+  <img src="images/calendar-image-2.png" width="350"/>
+  <img src="images/calendar-image-3.png" width="350"/>
+  <img src="images/calendar-image-4.png" width="350"/>
 </p>
 
 ## About
