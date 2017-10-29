@@ -1,10 +1,10 @@
 # Calendar Web App
- <h4 align="center">:computer:</h4>
- <p align="center">This calendar web app is a basic cross-platform desktop app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. </p>
+ <p align="center">:computer: This calendar web app is a basic cross-platform desktop app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. </p>
 
 ## Table of contents
 
 - [Demo](#demo)
+- [Screenshots](#screenshots)
 - [About](#about)
 - [Installation](#installation)
 
@@ -12,13 +12,12 @@
 👉 Watch it <a href="https://calendar-web-app.herokuapp.com/" target="_blank">here</a>.
 <br>
 
-### Screenshots:
-<p align="left">
+## Screenshots:
+![alt text](/public/images/calendar-image-1.png "Description goes here")
   <img src="/public/images/calendar-image-1.png" width="350"/>
   <img src="/public/images/calendar-image-2.png" width="350"/>
   <img src="/public/images/calendar-image-3.png" width="350"/>
   <img src="/public/images/calendar-image-4.png" width="350"/>
-</p>
 
 ## About
 
