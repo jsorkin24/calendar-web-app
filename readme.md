@@ -1,7 +1,7 @@
-# Calendary - A Calendar Web App
-<h4 align="center">A calendar web app for all your calendary needs. Never miss an appointment. Or do.</h4>
+# Calendar Web App
+A calendar web app for all your calendary needs. Never miss an appointment. Or do.
 
-Calendary is a basic cross-platform desktop :computer: calendar app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar (Angular 1x) </a>. 
+Calendary is a basic cross-platform desktop :computer: calendar app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. 
 
 ## Table of contents
 
@@ -11,18 +11,22 @@ Calendary is a basic cross-platform desktop :computer: calendar app that shows y
 - [Installation](#installation)
 
 ## Demo
-👉 Watch it <a href="https://calendar-web-app.herokuapp.com/">here</a>.
+👉 Watch it <a href="https://calendar-web-app.herokuapp.com/" target="_blank">here</a>.
 <br>
+<br>
+<br>
+
 
 Checkout these screenshots: 
 
-##About
+## About
 
 Documentation for the calendar can be found <a href=https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/README.md#documentation">here</a>.
+<br>
 
-##Installation
+## Installation
 
-###For Developers
+### For Developers
 Clone the source locally:
 
 ```sh
