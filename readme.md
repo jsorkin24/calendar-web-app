@@ -14,10 +14,10 @@
 
 ### Screenshots:
 <p align="left">
-  <img src="images/calendar-image-1.png" width="350"/>
-  <img src="images/calendar-image-2.png" width="350"/>
-  <img src="images/calendar-image-3.png" width="350"/>
-  <img src="images/calendar-image-4.png" width="350"/>
+  <img src="/images/calendar-image-1.png" width="350"/>
+  <img src="/images/calendar-image-2.png" width="350"/>
+  <img src="/images/calendar-image-3.png" width="350"/>
+  <img src="/images/calendar-image-4.png" width="350"/>
 </p>
 
 ## About
