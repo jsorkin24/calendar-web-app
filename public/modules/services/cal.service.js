@@ -52,7 +52,6 @@
         }
 
         function onError(error) {
-            console.log(error.data);
             return $q.reject(error.data)
         }
     }
