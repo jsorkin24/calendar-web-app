@@ -7,17 +7,19 @@ Calendary is a basic cross-platform desktop :computer: calendar app that shows y
 
 - [Demo](#demo)
 - [About](#about)
-- [Developers](#developers)
 - [Installation](#installation)
 
 ## Demo
 👉 Watch it <a href="https://calendar-web-app.herokuapp.com/" target="_blank">here</a>.
 <br>
-<br>
-<br>
 
-
-Checkout these screenshots: 
+### Screenshots:
+<p align="left">
+  <img src="calendar-image-1.png" width="350"/>
+  <img src="calendar-image-2.png" width="350"/>
+  <img src="calendar-image-3.png" width="350"/>
+  <img src="calendar-image-4.png" width="350"/>
+</p>
 
 ## About
 
