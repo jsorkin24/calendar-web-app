@@ -1,5 +1,5 @@
 # Calendar Web App
- <p align="center">:computer: This calendar web app is a basic cross-platform desktop app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>. </p>
+This calendar web app is a basic cross-platform desktop app that shows you what you can do using <a href="https://mattlewis92.github.io/angular-bootstrap-calendar/#!?example=kitchen-sink">Angular Bootstrap Calendar</a>.
 
 ## Table of contents
 
@@ -13,15 +13,23 @@
 <br>
 
 ## Screenshots:
-![alt text](/public/images/calendar-image-1.png "Description goes here")
-  <img src="/public/images/calendar-image-1.png" width="350"/>
-  <img src="/public/images/calendar-image-2.png" width="350"/>
-  <img src="/public/images/calendar-image-3.png" width="350"/>
-  <img src="/public/images/calendar-image-4.png" width="350"/>
+
+  #### On Load
+  <img src="public/images/calendar-image-1.PNG"  width="600"/>
+  
+  #### Create an Event
+  <img src="public/images/calendar-image-2.PNG" width="600"/>
+  
+  #### Add Event
+  <img src="public/images/calendar-image-3.PNG" width="600"/>
+  
+  #### View Event
+  <img src="public/images/calendar-image-4.PNG" width="600"/>
+
 
 ## About
 
-Documentation for the calendar can be found <a href=https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/README.md#documentation">here</a>.
+Documentation for the original Angular Bootstrap Calendar can be found <a href="https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/README.md#documentation">here</a>.
 <br>
 
 ## Installation
