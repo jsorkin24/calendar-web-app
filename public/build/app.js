@@ -86,7 +86,6 @@ $(function () {
 
         //Submit functionality changes based existence of id
         vm.submit = function () {
-
             if (vm.item._id) {
                 calService.update(vm.item).then(_onEditSuccess).catch(_onError);
             } else {
@@ -168,8 +167,9 @@ $(function () {
         }
 
         function _onEditSuccess(res) {
-            vm.item = null;
             vm.toggleAdd = !vm.toggleAdd;
+            vm.item = null;
+            vm.submitButton = 'Add';
         }
 
         function _onError(err) {

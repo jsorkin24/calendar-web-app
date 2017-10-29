@@ -17,7 +17,6 @@
 
         //Submit functionality changes based existence of id
         vm.submit = () => {
-        
             if (vm.item._id) {
                 calService.update(vm.item)
                     .then(_onEditSuccess)
@@ -111,8 +110,10 @@
         }
 
         function _onEditSuccess(res) {
-            vm.item = null;
             vm.toggleAdd = !vm.toggleAdd;
+            vm.item = null;
+            vm.submitButton = 'Add';
+
         }
 
         function _onError(err) {
