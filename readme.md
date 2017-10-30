@@ -57,8 +57,7 @@ $ mongod
 $ nodemon
 ```
 
-### Build Installers
-Build app
+### Build App
 ```sh
 $ gulp
 ```
