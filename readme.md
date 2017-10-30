@@ -29,7 +29,7 @@ This calendar web app is a basic cross-platform desktop app that shows you what 
 
 ## About
 
-Documentation for the original Angular Bootstrap Calendar can be found <a href="https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/README.md#documentation">here</a>.
+Documentation for the original Angular Bootstrap Calendar used in this app can be found <a href="https://github.com/mattlewis92/angular-bootstrap-calendar/blob/master/README.md#documentation">here</a>.
 <br>
 
 ## Installation
