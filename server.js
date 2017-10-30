@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080
 
 // mpromise is depreciated, use native es6 Promise
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017', {
     useMongoClient: true
 })
 
